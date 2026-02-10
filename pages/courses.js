@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 
 import Script from 'dangerous-html/react'
-import { useTranslations } from 'next-intl'
+//import { useTranslations } from 'next-intl'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'

@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 
-import { useTranslations } from 'next-intl'
+//import { useTranslations } from 'next-intl'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'

@@ -6139,3 +6139,577 @@
     padding: var(--spacing-lg);
   }
 }
+
+
+/* =========================
+   Courses Hub (Home)
+   ========================= */
+.courses-hub {
+  padding: 48px 20px;
+}
+.courses-hub-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.courses-hub-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 18px;
+}
+@media (max-width: 980px) {
+  .courses-hub-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.courses-featured-card {
+  margin-top: 12px;
+}
+
+.courses-tableHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.courses-tableTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.course-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.courses-note {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* Scrollable area inside the featured card */
+.courses-scroll {
+  max-height: 340px;   /* adjust if you want */
+  overflow: auto;
+  padding-right: 6px;  /* prevents scrollbar overlap */
+}
+
+/* Group styling */
+.course-group {
+  margin-bottom: 14px;
+}
+.course-group-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.course-bullets {
+  margin: 0;
+  padding-left: 18px;
+}
+.course-bullets li {
+  margin: 6px 0;
+}
+
+/* Buttons row under the table */
+.courses-hub-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* =========================
+   Progress Path
+   ========================= */
+.progress-path {
+  margin-top: 28px;
+}
+.milestone-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* LMS button beside Learn */
+.milestone--learn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.milestone-lms-btn {
+  margin-left: 6px;
+}
+
+@media (max-width: 520px) {
+  .courses-scroll { max-height: 280px; }
+  .courses-hub-actions .btn { width: 100%; }
+  .milestone-lms-btn { width: 100%; }
+}
+
+/* ===== Courses Hub enhancements ===== */
+
+/* 1) “Courses/Curriculum” header + tooltip */
+.courses-subtitle {
+  font-size: 13px;
+  opacity: 0.85;
+}
+.courses-title-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.courses-title-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid currentColor;
+  opacity: 0.75;
+  cursor: help;
+}
+
+/* 2) Make table area taller (double-ish) */
+.courses-featured-card--tall { }
+.courses-scroll--tall {
+  max-height: 640px;   /* was ~340; now ~double */
+  overflow: auto;
+}
+
+/* 3) Moving banner (branches) */
+.branch-marquee {
+  margin-top: 12px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.branch-marquee__track {
+  display: inline-flex;
+  gap: 10px;
+  padding: 10px 12px;
+  white-space: nowrap;
+  will-change: transform;
+  animation: branchScroll 16s linear infinite;
+}
+.branch-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(0,0,0,0.04);
+}
+@keyframes branchScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 4) Crisp button text (smaller font) */
+.btn-crisp {
+  font-size: 14px;     /* makes text tighter/crisper */
+  letter-spacing: 0.1px;
+  padding: 10px 14px;  /* a bit less padding */
+}
+
+/* Mobile tweaks (keeps responsiveness clean) */
+@media (max-width: 520px) {
+  .courses-scroll--tall { max-height: 520px; }
+  .courses-hub-actions .btn { width: 100%; }
+  .branch-marquee__track { animation-duration: 12s; }
+}
+/* Put marquee under table with same width */
+.branch-marquee--under-table {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+/* Strong CTA bar under marquee */
+.courses-cta-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Optional: make CTAs slightly stronger presence */
+.btn-cta {
+  white-space: nowrap;
+}
+
+/* Mobile: full-width CTAs */
+@media (max-width: 520px) {
+  .courses-cta-bar .btn {
+    width: 100%;
+  }
+}
+/* =========================
+   MOBILE FIXES: CoursesHub
+   ========================= */
+
+/* Ensure the two-column layout becomes one-column cleanly */
+@media (max-width: 980px) {
+  .courses-hub-layout {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Force hero media (GIF/video) to be responsive and not overflow */
+.hero-media,
+.media-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.media-card video {
+  width: 100%;
+  height: auto;        /* important: allow squeezing */
+  max-width: 100%;
+  display: block;
+  border-radius: inherit;
+  object-fit: cover;   /* keeps it nice while resizing */
+}
+
+/* If your media-card relies on a fixed height somewhere, this keeps it stable */
+@media (max-width: 980px) {
+  .media-card {
+    aspect-ratio: 16 / 10;  /* adjust if you want taller/shorter */
+    overflow: hidden;
+  }
+  .media-card video {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* CTA bar: always align cleanly and wrap properly */
+.courses-cta-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+/* Desktop/tablet: allow 2 per row if space is tight */
+.courses-cta-bar .btn {
+  flex: 1 1 220px;   /* grows but wraps */
+}
+
+/* Mobile: stack buttons 1-per-row, full width */
+@media (max-width: 520px) {
+  .courses-cta-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .courses-cta-bar .btn {
+    width: 100% !important;
+    flex: none !important;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;       /* allow multi-line text */
+    line-height: 1.2;
+    min-height: 44px;          /* tap-friendly */
+  }
+}
+
+/* Keep the long School button readable on mobile */
+@media (max-width: 520px) {
+  .btn-crisp {
+    font-size: 13px;  /* slightly smaller for long label */
+    padding: 10px 12px;
+  }
+}
+
+/* Ensure the right panel doesn’t overflow on small screens */
+.courses-table-panel,
+.courses-featured-card,
+.branch-marquee {
+  max-width: 100%;
+}
+
+/* =========================================
+   KEEP GIF & TABLE SAME HEIGHT (AUTO)
+   ========================================= */
+
+/* Make the 2-column layout stretch both sides equally */
+.courses-hub-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;   /* THIS is the key */
+}
+
+/* Left media column must stretch to full row height */
+.hero-media--stretch {
+  height: 100%;
+}
+
+/* Media card fills available height */
+.hero-media--stretch .media-card {
+  height: 100%;
+  display: flex;
+}
+
+/* Video fills card height gracefully */
+.hero-media--stretch video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* fills height without distortion */
+  border-radius: inherit;
+}
+
+/* Ensure the right panel (table side) defines height */
+.courses-table-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+/* On mobile, revert to natural stacking (no forced height sync) */
+@media (max-width: 980px) {
+  .courses-hub-layout {
+    grid-template-columns: 1fr;
+  }
+  .hero-media--stretch,
+  .hero-media--stretch .media-card {
+    height: auto;
+  }
+  .hero-media--stretch video {
+    height: auto;
+  }
+}
+
+/* ===== Contact dropdown in nav ===== */
+.navigation__item--dropdown {
+  position: relative;
+}
+
+.navigation__dropdown-trigger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.navigation__chevron {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.navigation__dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 220px;
+  border-radius: 14px;
+  padding: 10px;
+  display: none;
+  z-index: 999;
+
+  /* Keep theme-safe: use your existing surface tokens */
+  background: var(--color-surface);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.navigation__dropdown--open {
+  display: block;
+}
+
+.navigation__dropdown-item {
+  display: block;
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--color-on-surface);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.navigation__dropdown-item:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* Mobile: dropdown becomes full width inside open menu */
+@media (max-width: 991px) {
+  .navigation__dropdown {
+    position: static;
+    min-width: 100%;
+    margin-top: 10px;
+  }
+}
+.contact-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 16px;
+}
+
+.contact-form {
+  display: grid;
+  gap: 14px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: white;
+}
+.contact-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 16px;
+}
+
+.contact-form {
+  display: grid;
+  gap: 14px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: white;
+}
+:global(.footer-contact-list--seedlore){
+  display: grid;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+:global(.footer-contact-item){
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* ✅ This is the important part: force black ink for icons */
+:global(.footer-contact-icon--ink){
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 14px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+
+  /* Force icon color */
+  color: #000 !important;
+}
+
+/* Force svg to inherit that black color */
+:global(.footer-contact-icon--ink .footer-ink-icon){
+  color: #000 !important;
+}
+
+:global(.footer-contact-block){
+  display: grid;
+  gap: 6px;
+}
+
+:global(.footer-contact-label){
+  font-weight: 700;
+  font-size: 13px;
+  opacity: 0.95;
+}
+
+:global(.footer-contact-value){
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0.9;
+  word-break: break-word;
+}
+
+:global(.footer-contact-link){
+  text-decoration: none;
+}
+
+:global(.footer-contact-link:hover){
+  text-decoration: underline;
+}
+
+:global(.footer-contact-sep){
+  opacity: 0.6;
+}
+
+/* CTA pill with black icons */
+:global(.footer-mini-cta--ink){
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 12px;
+
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(0,0,0,0.14);
+  color: #000 !important;
+}
+
+:global(.footer-mini-cta--ink .footer-ink-icon){
+  color: #000 !important;
+}
+
+:global(.footer-mini-cta--ink:hover){
+  background: rgba(255,255,255,1);
+}
+
+@media (max-width: 480px){
+  :global(.footer-contact-item){
+    grid-template-columns: 38px 1fr;
+  }
+  :global(.footer-contact-icon--ink){
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+  }
+}
+
+.cta-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap; /* mobile friendly */
+}
+
+.cta-btn {
+  min-width: 220px;      /* 🔑 SAME WIDTH */
+  height: 48px;          /* 🔑 SAME HEIGHT */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}

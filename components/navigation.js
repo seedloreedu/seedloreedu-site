@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
+import Script from "dangerous-html/react";
+import Link from "next/link";
 
-import Script from 'dangerous-html/react'
-import { useTranslations } from 'next-intl'
-import Link from 'next/link';
-
-
-const Navigation = (props) => {
+const Navigation = () => {
   return (
     <>
       <div className="navigation-container1">
@@ -14,230 +11,222 @@ const Navigation = (props) => {
             <Script
               html={`<style>
 @media (prefers-reduced-motion: reduce) {
-.navigation, .navigation__logo, .navigation__toggle, .navigation__link, .navigation__menu, .navigation__item, .navigation__cta {
-  animation: none;
-  transition: none;
-}
+  .navigation, .navigation__logo, .navigation__toggle, .navigation__link, .navigation__menu, .navigation__item, .navigation__cta {
+    animation: none;
+    transition: none;
+  }
 }
 </style>`}
-            ></Script>
+            />
           </div>
         </div>
+
         <nav id="navigation" className="navigation">
           <div className="navigation__container">
-            <a href="/">
-              <div aria-label="Seedlore EDU Home" className="navigation__logo">
+            {/* HOME icon */}
+            <Link href="/" aria-label="Home">
+              <div className="navigation__logo">
                 <div className="navigation__logo-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true">
                     <path
                       fill="none"
                       stroke="currentColor"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
-                      d="M6 6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2zm6-4v2m-3 8v9m6-9v9M5 16l4-2m6 0l4 2M9 18h6M10 8v.01M14 8v.01"
-                    ></path>
+                      d="M3 10.5L12 3l9 7.5M5 10v10h5v-6h4v6h5V10"
+                    />
                   </svg>
                 </div>
                 <span className="navigation__logo-text">Seedlore EDU</span>
               </div>
-            </a>
-            <button
-              id="navigationToggle"
-              aria-label="Toggle navigation menu"
-              aria-expanded="false"
-              aria-controls="navigationMenu"
-              className="navigation__toggle"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                className="navigation-navigationtoggle-icon1 navigation__toggle-icon--open"
+            </Link>
+
+            {/* ContactUs beside Home (always visible on desktop) */}
+            <div className="navigation__centerLinks">
+              <Link href="/contactus" className="navigation__link navigation__link--top" aria-label="ContactUs">
+                ContactUs
+              </Link>
+            </div>
+
+            {/* RIGHT side: hamburger only */}
+            <div className="navigation__right">
+              <button
+                id="navigationToggle"
+                aria-label="Toggle navigation menu"
+                aria-expanded="false"
+                aria-controls="navigationMenu"
+                className="navigation__toggle"
+                type="button"
               >
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 5h16M4 12h16M4 19h16"
-                ></path>
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                className="navigation-navigationtoggle-icon2"
-              >
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M18 6L6 18M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="navigation-navigationtoggle-icon1 navigation__toggle-icon--open"
+                >
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 5h16M4 12h16M4 19h16"
+                  />
+                </svg>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="navigation-navigationtoggle-icon2"
+                >
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M18 6L6 18M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile menu (simple links only, no dropdowns) */}
             <div id="navigationMenu" className="navigation__menu">
               <ul className="navigation__list">
-                <li className="navigation__item">
-                  <a href="/courses">
-                    <div className="navigation__link">
-                      <span>Courses</span>
-                    </div>
-                  </a>
-                </li>
-                <li className="navigation__item">
-                  <a href="#about">
-                    <div className="navigation__link">
-                      <span>About</span>
-                    </div>
-                  </a>
-                </li>
-                <li className="navigation__item">
-                  <a href="#contact">
-                    <div className="navigation__link">
-                      <span>Contact</span>
-                    </div>
-                  </a>
-                </li>
-                <li className="navigation__item navigation__item--cta">
-                  <a href="/enroll-now">
-                    <div className="navigation__cta btn btn-primary">
-                      <span>
-                        {' '}
-                        Enroll Now
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: ' ',
-                          }}
-                        />
-                      </span>
-                    </div>
-                  </a>
+                <li className="navigation__item navigation__mobileOnly">
+                  <Link href="/contactus" className="navigation__link">
+                    ContactUs
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
         </nav>
-        <div className="navigation-container4">
-          <div className="navigation-container5">
-            <Script
-              html={`<style>
-        @keyframes pulse-glow {0%,100% {box-shadow: --shadow-level-2;}
-50% {box-shadow: 0 4px 20px
-        color-mix(in srgb, var(--color-primary) 40%, transparent);}}
-        </style> `}
-            ></Script>
-          </div>
-        </div>
+
+        {/* JS: stable mobile menu + unlock scroll fixes */}
         <div className="navigation-container6">
           <div className="navigation-container7">
             <Script
               html={`<script defer data-name="navigation">
 (function(){
-  const navigationToggle = document.getElementById("navigationToggle")
-  const navigationMenu = document.getElementById("navigationMenu")
-  const navigationLinks = document.querySelectorAll(".navigation__link")
+  const navigationToggle = document.getElementById("navigationToggle");
+  const navigationMenu = document.getElementById("navigationMenu");
 
-  navigationToggle.addEventListener("click", function () {
-    const isExpanded = this.getAttribute("aria-expanded") === "true"
-    this.setAttribute("aria-expanded", !isExpanded)
-    navigationMenu.classList.toggle("navigation__menu--active")
+  function lock(){ document.body.style.overflow = "hidden"; }
+  function unlock(){ document.body.style.overflow = ""; }
 
-    if (!isExpanded) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
-  })
+  // Mobile menu toggle
+  navigationToggle?.addEventListener("click", function () {
+    const isExpanded = this.getAttribute("aria-expanded") === "true";
+    this.setAttribute("aria-expanded", String(!isExpanded));
+    navigationMenu?.classList.toggle("navigation__menu--active");
 
-  navigationLinks.forEach(function (link) {
-    link.addEventListener("click", function () {
-      if (window.innerWidth <= 991) {
-        navigationMenu.classList.remove("navigation__menu--active")
-        navigationToggle.setAttribute("aria-expanded", "false")
-        document.body.style.overflow = ""
-      }
-    })
-  })
+    if (!isExpanded) lock();
+    else unlock();
+  });
 
-  window.addEventListener("resize", function () {
-    if (window.innerWidth > 991) {
-      navigationMenu.classList.remove("navigation__menu--active")
-      navigationToggle.setAttribute("aria-expanded", "false")
-      document.body.style.overflow = ""
-    }
-  })
+  // Close mobile menu when clicking any link inside menu
+  navigationMenu?.addEventListener("click", function(e){
+    const a = e.target?.closest?.("a");
+    if (!a) return;
 
-  let lastScrollTop = 0
-  const navigation = document.getElementById("navigation")
+    navigationMenu.classList.remove("navigation__menu--active");
+    navigationToggle?.setAttribute("aria-expanded", "false");
+    unlock();
+  });
 
+  // Sticky hide-on-scroll (avoid jitter while menu open)
+  let lastScrollTop = 0;
+  const navigation = document.getElementById("navigation");
   window.addEventListener("scroll", function () {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    if (!navigation) return;
+    if (navigationMenu?.classList.contains("navigation__menu--active")) return;
 
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-      navigation.style.transform = "translateY(-100%)"
-    } else {
-      navigation.style.transform = "translateY(0)"
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop && scrollTop > 100) navigation.style.transform = "translateY(-100%)";
+    else navigation.style.transform = "translateY(0)";
+    lastScrollTop = scrollTop;
+  });
+
+  // Safety: unlock scroll when resizing to desktop
+  window.addEventListener("resize", function(){
+    if (window.innerWidth > 991) {
+      unlock();
+      navigationMenu?.classList.remove("navigation__menu--active");
+      navigationToggle?.setAttribute("aria-expanded","false");
     }
+  });
 
-    lastScrollTop = scrollTop
-  })
-})()
+  // Safety: unlock scroll if user presses Escape
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") {
+      unlock();
+      navigationMenu?.classList.remove("navigation__menu--active");
+      navigationToggle?.setAttribute("aria-expanded","false");
+    }
+  });
+})();
 </script>`}
-            ></Script>
+            />
           </div>
         </div>
       </div>
-      <style jsx>
-        {`
-          .navigation-container1 {
-            display: contents;
-          }
-          .navigation-container2 {
-            display: none;
-          }
-          .navigation-container3 {
-            display: contents;
-          }
-          .navigation-navigationtoggle-icon1 {
-            color: var(--color-on-surface);
-            transition: all 0.3s var(--animation-curve-primary);
-          }
-          .navigation-navigationtoggle-icon2 {
-            color: var(--color-on-surface);
-            display: none;
-            transition: all 0.3s var(--animation-curve-primary);
-          }
-          .navigation-container4 {
-            display: none;
-          }
-          .navigation-container5 {
-            display: contents;
-          }
-          .navigation-container6 {
-            display: none;
-          }
-          .navigation-container7 {
-            display: contents;
-          }
-        `}
-      </style>
-    </>
-  )
-}
 
-export default Navigation
+      <style jsx>{`
+        .navigation-container1 { display: contents; }
+        .navigation-container2 { display: none; }
+        .navigation-container3 { display: contents; }
+        .navigation-container6 { display: none; }
+        .navigation-container7 { display: contents; }
+
+        :global(.navigation__right){
+          display:flex;
+          align-items:center;
+          gap: 12px;
+        }
+
+        /* ContactUs beside Home on desktop */
+        :global(.navigation__centerLinks){
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-left: 14px;
+        }
+
+        :global(.navigation__link--top){
+          display: inline-flex;
+          align-items: center;
+          padding: 8px 10px;
+          border-radius: 10px;
+          text-decoration: none;
+          font-weight: 600;
+          border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        :global(.navigation__link--top:hover){
+          border-color: rgba(255,255,255,0.22);
+        }
+
+        :global(.navigation__mobileOnly){ display: none; }
+
+        @media (max-width: 991px){
+          :global(.navigation__centerLinks){ display: none; } /* hide top ContactUs on mobile, show inside hamburger */
+          :global(.navigation__mobileOnly){ display: block; }
+          :global(.navigation__menu--active){
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+        }
+      `}</style>
+    </>
+  );
+};
+
+export default Navigation;
