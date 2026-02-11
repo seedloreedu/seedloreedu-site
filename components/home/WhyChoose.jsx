@@ -28,15 +28,18 @@ export default function WhyChoose() {
           </div>
           <h3 id="card-1-title" className="headline">Real Tech Skills</h3>
           <p className="support">
-            Bright, playful classes that teach real tech skills — robotics, AI, and coding designed for curious kids.
+            Structured robotics, AI, and coding programs aligned with NEP 2020 and ICSE, CBSE & ISC curricula.
+Strengthen conceptual understanding while encouraging innovation, creativity,problem-solving confidence.
+
           </p>
         </article>
 
         <article tabIndex="0" role="group" aria-labelledby="card-2-title" className="card">
           <div className="thumbnail">
             <img
-              src="https://images.pexels.com/photos/7868892/pexels-photo-7868892.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1500"
-              alt="Children collaborating on a robotics project, showcasing teamwork and STEM learning indoors"
+   src="/images/Handson-hero.jpg"
+alt="Hands on Robotics"
+
             />
           </div>
           <div className="icon-badge">
@@ -48,15 +51,15 @@ export default function WhyChoose() {
           </div>
           <h3 id="card-2-title" className="headline">Hands-on Projects</h3>
           <p className="support">
-            Build bots, train mini AI, and launch apps — outcomes kids can show off and parents can trust.
+            Every learner gets a dedicated DIY kit to practice projects, plus Seedlore LMS access with notes, quizzes, progress tracking, and course-completion certificates. Outcomes kids can show off.
           </p>
         </article>
 
         <article tabIndex="0" role="group" aria-labelledby="card-3-title" className="card">
           <div className="thumbnail">
             <img
-              src="https://images.pexels.com/photos/7869077/pexels-photo-7869077.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1500"
-              alt="Smiling student holds robotics project during a hands-on STEM activity in the classroom"
+              src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1500"
+alt="Close-up of robotics kit and microcontroller setup for hands-on STEM learning"
             />
           </div>
           <div className="icon-badge">
@@ -73,7 +76,7 @@ export default function WhyChoose() {
           </div>
           <h3 id="card-3-title" className="headline">Expert Mentors</h3>
           <p className="support">
-            Certified educators who make learning fun, safe, and deeply effective with tiny-class joy.
+            Certified educators deliver engaging, structured sessions with regular feedback reviews, milestone tracking, and guided mentorship—ensuring learning remains effective, safe, measurable, and growth-focused.
           </p>
         </article>
       </div>

@@ -488,11 +488,35 @@ export default function FaqSection() {
   background: rgba(80, 255, 160, 0.10);
 }
 
+ :global(#faq-section .faq-question.is-highlight) {
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(80, 255, 160, 0.35);
+    background: rgba(80, 255, 160, 0.10);
+  }
 
+  /* ✅ Mobile: boost contrast so highlight is clearly visible */
+  @media (max-width: 768px) {
+    :global(#faq-section .faq-question.is-highlight) {
+      border: 1px solid rgba(11, 107, 87, 0.55);
+      background: rgba(11, 107, 87, 0.14);
+      box-shadow: 0 6px 18px rgba(11, 107, 87, 0.18);
+    }
+
+    /* optional: make the question text slightly bolder while highlighted */
+    :global(#faq-section .faq-question.is-highlight) {
+      font-weight: 900;
+    }
+  }
         /* Panels fade */
         :global(#faq-section .faq-panel) {
           transition: opacity 0.2s ease;
         }
+          @media (max-width: 768px) {
+  :global(#faq-section .faq-question.is-highlight) {
+    border-left: 6px solid #0b6b57;
+  }
+}
       `}</style>
     </>
   )
