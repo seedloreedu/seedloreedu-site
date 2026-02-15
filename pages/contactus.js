@@ -22,7 +22,7 @@ const ContactUs = () => {
       instructor:
         'Briefly describe your qualifications, skillset, and any specific query you have.',
       franchise:
-        'Mention your location, whether you have ~300 sq ft available, and if you have any existing student base.',
+        'Mention your location, whether you have min ~300 sq ft available, and if you have any existing student base.',
       school:
         'Mention the school name, board (CBSE/ICSE/ISC), and the course(s) you are interested in.',
       other: 'Write your message...',

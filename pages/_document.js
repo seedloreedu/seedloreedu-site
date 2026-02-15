@@ -24,6 +24,8 @@ class CustomDocument extends Document {
             }}
             data-tag="default-style-sheet"
           ></style>
+         <link rel="icon" href="/favicon.ico" />
+         <link rel="shortcut icon" href="/favicon.ico" />
           <link
             rel="stylesheet"
             href="https://unpkg.com/animate.css@4.1.1/animate.css"
