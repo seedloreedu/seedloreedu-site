@@ -236,10 +236,13 @@ const Footer = (props) => {
       </div>
     </li>
   </ul>
-
-  <a href="/contactus" className="footer-cta-link" aria-label="Book Free Trial - Contact Us">
+<a
+  href="/contactus"
+  className="footer-cta-link"
+  aria-label="Book a Free Demo Session - Contact Us"
+>
   <button type="button" className="footer-cta btn btn-primary">
-    Book Free Trial
+    Book a Free Demo Session
   </button>
 </a>
 
