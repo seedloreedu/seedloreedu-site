@@ -54,7 +54,7 @@ const Footer = (props) => {
                 </p>
 
                 <div className="footer-social">
-                  <a href="#" aria-label="Facebook">
+                  <a href="https://www.facebook.com/share/18bwSj6FkW/" target="_blank" rel="noreferrer" aria-label="Facebook">
                     <div className="footer-social-link">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                         <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
@@ -70,7 +70,7 @@ const Footer = (props) => {
                       </svg>
                     </div>
                   </a>
-                  <a href="#" aria-label="Instagram">
+                  <a href="https://instagram.com/seedlore_educare?igsh=cjJvYWI3eDl1Nnh6" target="_blank" rel="noreferrer" aria-label="Instagram">
                     <div className="footer-social-link">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                         <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
@@ -101,7 +101,7 @@ const Footer = (props) => {
                     <a href="/#top"><div className="footer-link"><span>Home</span></div></a>
                   </li>
                   <li className="footer-list-item">
-                    <a href="/#courses-hub"><div className="footer-link"><span>Courses</span></div></a>
+                    <a href="/#courses-robotics"><div className="footer-link"><span>Courses</span></div></a>
                   </li>
                   <li className="footer-list-item">
                     <a href="/#faq-section"><div className="footer-link"><span>FAQ</span></div></a>
@@ -116,11 +116,10 @@ const Footer = (props) => {
               <div className="footer-column footer-programs">
                 <h3 className="footer-column-title">Our Programs</h3>
                 <ul className="footer-list">
-                  <li className="footer-list-item"><a href="/#courses-hub"><div className="footer-link"><span>Robotics</span></div></a></li>
-                  <li className="footer-list-item"><a href="/#courses-hub"><div className="footer-link"><span>Artificial Intelligence</span></div></a></li>
-                  <li className="footer-list-item"><a href="/#courses-hub"><div className="footer-link"><span>Coding &amp; Programming</span></div></a></li>
-                  
-                  <li className="footer-list-item"><a href="/#courses-hub"><div className="footer-link"><span>STEM Projects</span></div></a></li>
+                  <li className="footer-list-item"><a href="/#courses-robotics"><div className="footer-link"><span>Robotics</span></div></a></li>
+                  <li className="footer-list-item"><a href="/#courses-aiml"><div className="footer-link"><span>Artificial Intelligence</span></div></a></li>
+                  <li className="footer-list-item"><a href="/#courses-coding"><div className="footer-link"><span>Coding &amp; Programming</span></div></a></li>
+                  <li className="footer-list-item"><a href="/#courses-computer"><div className="footer-link"><span>STEM Projects</span></div></a></li>
                 </ul>
               </div>
 
@@ -154,27 +153,6 @@ const Footer = (props) => {
           <span className="footer-contact-sep"> / </span>
           <a className="footer-contact-link" href="tel:+918621988211">+91-8621988211</a>
         </div>
-
-        {/* One WhatsApp CTA (uses first number) */}
-        <a
-          className="footer-mini-cta footer-mini-cta--ink"
-          href="https://wa.me/916290465739"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="WhatsApp Seedlore Educare"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" className="footer-ink-icon" aria-hidden="true">
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.2-4.8A8.5 8.5 0 1 1 20.5 11.5Z"
-            />
-          </svg>
-          <span>WhatsApp</span>
-        </a>
       </div>
     </li>
 
@@ -194,14 +172,6 @@ const Footer = (props) => {
         <div className="footer-contact-value">
           <a className="footer-contact-link" href="mailto:mail@seedloreedu.com">mail@seedloreedu.com</a>
         </div>
-
-        <a className="footer-mini-cta footer-mini-cta--ink" href="mailto:mail@seedloreedu.com" aria-label="Email Seedlore Educare">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" className="footer-ink-icon" aria-hidden="true">
-            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m22 2l-7 20l-4-9l-9-4Z"></path>
-            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M22 2L11 13"></path>
-          </svg>
-          <span>Email</span>
-        </a>
       </div>
     </li>
 
@@ -224,28 +194,9 @@ const Footer = (props) => {
             seedloreedu.com
           </a>
         </div>
-
-        <a className="footer-mini-cta footer-mini-cta--ink" href="https://seedloreedu.com" target="_blank" rel="noreferrer" aria-label="Open Seedlore website">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" className="footer-ink-icon" aria-hidden="true">
-            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 3h7v7"></path>
-            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14L21 3"></path>
-            <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 14v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"></path>
-          </svg>
-          <span>Website</span>
-        </a>
       </div>
     </li>
   </ul>
-<a
-  href="/contactus"
-  className="footer-cta-link"
-  aria-label="Book a Free Demo Session - Contact Us"
->
-  <button type="button" className="footer-cta btn btn-primary">
-    Book a Free Demo Session
-  </button>
-</a>
-
 </div>
 
                 

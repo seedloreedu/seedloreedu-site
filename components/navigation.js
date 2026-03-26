@@ -1,227 +1,130 @@
 import React from "react";
-import Script from "dangerous-html/react";
 import Link from "next/link";
 
 const Navigation = () => {
+  const handleCoursesClick = (event) => {
+    if (typeof window === "undefined" || window.location.pathname !== "/") return;
+
+    event.preventDefault();
+    const coursesSection = document.getElementById("courses-robotics");
+
+    if (!coursesSection) return;
+
+    const navHeight = document.getElementById("navigation")?.offsetHeight || 0;
+    const targetTop = coursesSection.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+
+    window.history.replaceState(null, "", "#courses-robotics");
+    window.scrollTo({ top: targetTop, behavior: "smooth" });
+  };
+
   return (
     <>
       <div className="navigation-container1">
         <div className="navigation-container2">
-          <div className="navigation-container3">
-            <Script
-              html={`<style>
-@media (prefers-reduced-motion: reduce) {
-  .navigation, .navigation__logo, .navigation__toggle, .navigation__link, .navigation__menu, .navigation__item, .navigation__cta {
-    animation: none;
-    transition: none;
-  }
-}
-</style>`}
-            />
-          </div>
+          <div className="navigation-container3" />
         </div>
 
         <nav id="navigation" className="navigation">
           <div className="navigation__container">
-            {/* HOME icon */}
-            <Link href="/" aria-label="Home">
-              <div className="navigation__logo">
-                <div className="navigation__logo-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M3 10.5L12 3l9 7.5M5 10v10h5v-6h4v6h5V10"
-                    />
-                  </svg>
+            <div className="navigation__brandBlock">
+              <Link href="/" aria-label="Home">
+                <div className="navigation__logo">
+                  <div className="navigation__logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 10.5L12 3l9 7.5M5 10v10h5v-6h4v6h5V10"
+                      />
+                    </svg>
+                  </div>
+                  <span className="navigation__logo-text">Seedlore Educare</span>
                 </div>
-                <span className="navigation__logo-text">Seedlore EDU</span>
-              </div>
-            </Link>
-
-            {/* ContactUs beside Home (always visible on desktop) */}
-            <div className="navigation__centerLinks">
-              <Link href="/contactus" className="navigation__link navigation__link--top" aria-label="ContactUs">
-                ContactUs
               </Link>
-            </div>
 
-            {/* RIGHT side: hamburger only */}
-            <div className="navigation__right">
-              <button
-                id="navigationToggle"
-                aria-label="Toggle navigation menu"
-                aria-expanded="false"
-                aria-controls="navigationMenu"
-                className="navigation__toggle"
-                type="button"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  className="navigation-navigationtoggle-icon1 navigation__toggle-icon--open"
-                >
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 5h16M4 12h16M4 19h16"
-                  />
-                </svg>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="28"
-                  height="28"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  className="navigation-navigationtoggle-icon2"
-                >
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M18 6L6 18M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-
-            {/* Mobile menu (simple links only, no dropdowns) */}
-            <div id="navigationMenu" className="navigation__menu">
-              <ul className="navigation__list">
-                <li className="navigation__item navigation__mobileOnly">
-                  <Link href="/contactus" className="navigation__link">
-                    ContactUs
-                  </Link>
-                </li>
-              </ul>
+              <div className="navigation__inlineLinks" aria-label="Primary navigation">
+                <Link href="/#courses-robotics" className="navigation__inlineLink" aria-label="Courses" onClick={handleCoursesClick}>
+                  Courses
+                </Link>
+                <Link href="/contactus" className="navigation__inlineLink navigation__inlineLink--primary" aria-label="ContactUs">
+                  ContactUs
+                </Link>
+              </div>
             </div>
           </div>
         </nav>
-
-        {/* JS: stable mobile menu + unlock scroll fixes */}
-        <div className="navigation-container6">
-          <div className="navigation-container7">
-            <Script
-              html={`<script defer data-name="navigation">
-(function(){
-  const navigationToggle = document.getElementById("navigationToggle");
-  const navigationMenu = document.getElementById("navigationMenu");
-
-  function lock(){ document.body.style.overflow = "hidden"; }
-  function unlock(){ document.body.style.overflow = ""; }
-
-  // Mobile menu toggle
-  navigationToggle?.addEventListener("click", function () {
-    const isExpanded = this.getAttribute("aria-expanded") === "true";
-    this.setAttribute("aria-expanded", String(!isExpanded));
-    navigationMenu?.classList.toggle("navigation__menu--active");
-
-    if (!isExpanded) lock();
-    else unlock();
-  });
-
-  // Close mobile menu when clicking any link inside menu
-  navigationMenu?.addEventListener("click", function(e){
-    const a = e.target?.closest?.("a");
-    if (!a) return;
-
-    navigationMenu.classList.remove("navigation__menu--active");
-    navigationToggle?.setAttribute("aria-expanded", "false");
-    unlock();
-  });
-
-  // Sticky hide-on-scroll (avoid jitter while menu open)
-  let lastScrollTop = 0;
-  const navigation = document.getElementById("navigation");
-  window.addEventListener("scroll", function () {
-    if (!navigation) return;
-    if (navigationMenu?.classList.contains("navigation__menu--active")) return;
-
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop && scrollTop > 100) navigation.style.transform = "translateY(-100%)";
-    else navigation.style.transform = "translateY(0)";
-    lastScrollTop = scrollTop;
-  });
-
-  // Safety: unlock scroll when resizing to desktop
-  window.addEventListener("resize", function(){
-    if (window.innerWidth > 991) {
-      unlock();
-      navigationMenu?.classList.remove("navigation__menu--active");
-      navigationToggle?.setAttribute("aria-expanded","false");
-    }
-  });
-
-  // Safety: unlock scroll if user presses Escape
-  document.addEventListener("keydown", function(e){
-    if (e.key === "Escape") {
-      unlock();
-      navigationMenu?.classList.remove("navigation__menu--active");
-      navigationToggle?.setAttribute("aria-expanded","false");
-    }
-  });
-})();
-</script>`}
-            />
-          </div>
-        </div>
       </div>
 
       <style jsx>{`
         .navigation-container1 { display: contents; }
         .navigation-container2 { display: none; }
         .navigation-container3 { display: contents; }
-        .navigation-container6 { display: none; }
-        .navigation-container7 { display: contents; }
 
-        :global(.navigation__right){
-          display:flex;
-          align-items:center;
-          gap: 12px;
-        }
-
-        /* ContactUs beside Home on desktop */
-        :global(.navigation__centerLinks){
+        .navigation__brandBlock{
           display: flex;
           align-items: center;
-          gap: 14px;
-          margin-left: 14px;
+          justify-content: space-between;
+          gap: 18px;
+          width: 100%;
         }
 
-        :global(.navigation__link--top){
+        .navigation__inlineLinks{
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .navigation__inlineLink{
           display: inline-flex;
           align-items: center;
-          padding: 8px 10px;
-          border-radius: 10px;
+          justify-content: center;
+          padding: 9px 14px;
+          border-radius: 999px;
           text-decoration: none;
-          font-weight: 600;
-          border: 1px solid rgba(255,255,255,0.12);
+          font-weight: 700;
+          color: #0f172a;
+          background:
+            radial-gradient(circle at top left, rgba(251, 191, 36, 0.16), transparent 42%),
+            radial-gradient(circle at top right, rgba(20, 184, 166, 0.14), transparent 38%),
+            linear-gradient(135deg, rgba(255, 248, 232, 0.96) 0%, rgba(238, 252, 248, 0.96) 56%, rgba(239, 246, 255, 0.96) 100%);
+          border: 1px solid rgba(15, 118, 110, 0.14);
+          box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+          backdrop-filter: blur(6px);
         }
 
-        :global(.navigation__link--top:hover){
-          border-color: rgba(255,255,255,0.22);
+        .navigation__inlineLink:hover{
+          color: #0f766e;
+          border-color: rgba(15, 118, 110, 0.28);
+          background:
+            radial-gradient(circle at top left, rgba(251, 191, 36, 0.2), transparent 42%),
+            radial-gradient(circle at top right, rgba(20, 184, 166, 0.18), transparent 38%),
+            linear-gradient(135deg, #fff8e8 0%, #eefcf8 56%, #eff6ff 100%);
         }
 
-        :global(.navigation__mobileOnly){ display: none; }
+        .navigation__inlineLink--primary{
+          color: #0f172a;
+        }
 
         @media (max-width: 991px){
-          :global(.navigation__centerLinks){ display: none; } /* hide top ContactUs on mobile, show inside hamburger */
-          :global(.navigation__mobileOnly){ display: block; }
-          :global(.navigation__menu--active){
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+          .navigation__brandBlock{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+          }
+          .navigation__inlineLinks{
+            width: 100%;
+            gap: 8px;
+          }
+          .navigation__inlineLink{
+            flex: 1 1 calc(50% - 4px);
+            min-height: 42px;
+            padding: 10px 12px;
+            font-size: 0.95rem;
           }
         }
       `}</style>

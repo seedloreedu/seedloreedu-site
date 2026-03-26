@@ -77,7 +77,7 @@ export default function FaqSection() {
 
               <p className="faq-answer">
                 Seedlore EDU offers structured <b>Robotics</b>, <b>AI/ML</b>, <b>Coding</b>, and <b>Computer</b> programs for
-                students aged <b>10–18 years</b>.
+                students from <b>classes 5 to 12</b>.
               </p>
 
               <p className="faq-answer faq-dotline">
@@ -521,3 +521,5 @@ export default function FaqSection() {
     </>
   )
 }
+
+

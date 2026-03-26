@@ -210,7 +210,7 @@ const ContactUs = () => {
 
         .contactus-main {
           width: 100%;
-          padding: 18px 14px 36px;
+          padding: 108px 14px 36px;
           display: flex;
           justify-content: center;
         }
@@ -343,6 +343,21 @@ const ContactUs = () => {
           background: rgba(80, 255, 160, 0.08);
           font-size: 13px;
           font-weight: 700;
+        }
+
+        @media (max-width: 991px) {
+          .contactus-main {
+            padding-top: calc(132px + env(safe-area-inset-top, 0px));
+          }
+
+          .contactus-radios {
+            gap: 10px;
+          }
+
+          .contactus-radio {
+            width: 100%;
+            justify-content: flex-start;
+          }
         }
       `}</style>
     </>
