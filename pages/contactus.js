@@ -3,6 +3,7 @@ import Head from 'next/head'
 
 import Navigation from '../components/navigation'
 import Footer from '../components/footer'
+import { submitContactForm } from '../lib/contact'
 
 const ContactUs = () => {
   const options = useMemo(
@@ -66,20 +67,13 @@ const ContactUs = () => {
     setSent(false)
 
     try {
-      const resp = await fetch('/.netlify/functions/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contactType,
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          description: form.description,
-        }),
+      await submitContactForm({
+        contactType,
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        description: form.description,
       })
-
-      const data = await resp.json().catch(() => ({}))
-      if (!resp.ok) throw new Error(data?.error || 'Failed to submit')
 
       setSent(true)
       setForm({ name: '', email: '', phone: '', description: '' })

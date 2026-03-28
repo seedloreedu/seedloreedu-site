@@ -98,7 +98,7 @@ const Footer = (props) => {
                 <h3 className="footer-column-title">Quick Links</h3>
                 <ul className="footer-list">
                   <li className="footer-list-item">
-                    <a href="/#top"><div className="footer-link"><span>Home</span></div></a>
+                    <a href="/"><div className="footer-link"><span>Home</span></div></a>
                   </li>
                   <li className="footer-list-item">
                     <a href="/#courses-robotics"><div className="footer-link"><span>Courses</span></div></a>

@@ -8,6 +8,7 @@ import Footer from '../components/footer'
 import CoursesHub from '../components/home/CoursesHub'
 import WhyChoose from '../components/home/WhyChoose'
 import FaqSection from '../components/home/FaqSection'
+import OfferWidget from '../components/OfferWidget'
 
 export default function Home() {
   return (
@@ -50,6 +51,7 @@ export default function Home() {
         <FaqSection />
 
         <Footer />
+        <OfferWidget />
       </div>
 
       {/* Keep your original “hidden container” behavior intact */}

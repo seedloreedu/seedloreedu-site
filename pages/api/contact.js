@@ -1,34 +1,24 @@
 import { Resend } from 'resend'
 
-export const handler = async (event) => {
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ ok: false, error: 'Method not allowed' }),
-    }
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ ok: false, error: 'Method not allowed' })
   }
 
   try {
-    const body = JSON.parse(event.body || '{}')
+    const body = req.body || {}
     const { contactType, name, email, phone, description, subjectTag, interest } = body
     const apiKey = process.env.RESEND_API_KEY
 
     if (!apiKey) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({
-          ok: false,
-          error: 'RESEND_API_KEY is missing. Add it to your environment variables to enable email sending.',
-        }),
-      }
+      return res.status(500).json({
+        ok: false,
+        error: 'RESEND_API_KEY is missing. Add it to your environment variables to enable email sending.',
+      })
     }
 
-    // Phone mandatory
     if (!phone || !String(phone).trim()) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ ok: false, error: 'Phone is required' }),
-      }
+      return res.status(400).json({ ok: false, error: 'Phone is required' })
     }
 
     const resend = new Resend(apiKey)
@@ -55,24 +45,18 @@ export const handler = async (event) => {
         <p><b>Description:</b><br/>${(description || '').replace(/\n/g, '<br/>')}</p>
       `,
       replyTo: email || undefined,
-    }) // Resend Node SDK pattern :contentReference[oaicite:2]{index=2}
+    })
 
     if (error) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ ok: false, error: error.message || 'Email failed' }),
-      }
+      return res.status(500).json({ ok: false, error: error.message || 'Email failed' })
     }
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ ok: true }),
-    }
-  } catch (err) {
-    console.error('Resend error:', err)
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ ok: false, error: err?.message || 'Email failed' }),
-    }
+    return res.status(200).json({ ok: true })
+  } catch (error) {
+    console.error('Resend error:', error)
+    return res.status(500).json({
+      ok: false,
+      error: error?.message || 'Email failed',
+    })
   }
 }
