@@ -175,6 +175,9 @@ export default function RoboticsSummerPackPage() {
                     Register
                   </a>
                 </Link>
+                <Link href="/current-offers">
+                  <a className="btn btn-outline btn-lg">Back to Current Offers</a>
+                </Link>
                 <a href="#summer-courses" className="btn btn-outline btn-lg">
                   View Course Details
                 </a>
@@ -218,7 +221,7 @@ export default function RoboticsSummerPackPage() {
               </div>
               <span>Program Duration</span>
               <strong>6 Months</strong>
-              <small>Weekend or guided weekly batches</small>
+              <small>Total 50 hrs, 25 sessions for 2 hrs, with weekend or guided weekly batches</small>
             </div>
             <div className="summer-info__card">
               <div className="summer-info__icon" aria-hidden="true">

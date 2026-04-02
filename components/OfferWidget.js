@@ -4,10 +4,10 @@ import Link from 'next/link'
 export default function OfferWidget() {
   return (
     <>
-      <Link href="/robotics-2026-summer-pack">
-        <a className="offer-widget" aria-label="View current offer">
+      <Link href="/current-offers">
+        <a className="offer-widget" aria-label="View current offers">
           <span className="offer-widget__ring" aria-hidden="true"></span>
-          <span className="offer-widget__ribbon">View Offer</span>
+          <span className="offer-widget__ribbon">View Offers</span>
           <span className="offer-widget__icon" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
               <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8">
@@ -31,11 +31,16 @@ export default function OfferWidget() {
           display: grid;
           place-items: center;
           border-radius: 50%;
+          overflow: visible;
           text-decoration: none;
           color: #ffffff;
-          background: linear-gradient(135deg, #0c8d65, #04524b);
-          border: 2px solid rgba(255, 255, 255, 0.85);
-          box-shadow: 0 18px 34px rgba(4, 82, 75, 0.34);
+          background:
+            radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.3), transparent 34%),
+            linear-gradient(135deg, #17b887 0%, #08756e 52%, #03433f 100%);
+          border: 2px solid rgba(255, 255, 255, 0.92);
+          box-shadow:
+            0 20px 36px rgba(4, 82, 75, 0.28),
+            0 0 0 5px rgba(255, 255, 255, 0.16);
           animation: offerBlink 1.2s ease-in-out infinite;
         }
 
@@ -43,45 +48,68 @@ export default function OfferWidget() {
           position: absolute;
           inset: -8px;
           border-radius: 50%;
-          border: 3px solid rgba(214, 75, 58, 0.78);
-          box-shadow: 0 0 0 6px rgba(255, 238, 228, 0.88);
+          border: 3px solid rgba(255, 196, 91, 0.92);
+          box-shadow:
+            0 0 0 6px rgba(255, 245, 214, 0.82),
+            0 0 26px rgba(255, 190, 70, 0.32);
         }
 
         .offer-widget__icon {
+          position: relative;
           width: 24px;
           height: 24px;
           display: grid;
           place-items: center;
           margin-top: 6px;
+          color: #fffdf7;
+          filter: drop-shadow(0 4px 10px rgba(255, 232, 166, 0.38));
+        }
+
+        .offer-widget__icon::before {
+          content: '';
+          position: absolute;
+          inset: -7px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0) 72%);
+          z-index: -1;
         }
 
         .offer-widget__ribbon {
           position: absolute;
           top: -14px;
           min-width: 76px;
+          height: auto;
+          display: block;
           padding: 8px 14px;
           border-radius: 999px;
           font-size: 10px;
           line-height: 1;
           font-weight: 800;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
           color: #ffffff;
-          background: linear-gradient(135deg, #ff8a00, #ff4d6d);
-          border: 1px solid rgba(255, 255, 255, 0.55);
-          box-shadow: 0 12px 24px rgba(255, 77, 109, 0.34);
+          background: linear-gradient(145deg, #25d366 0%, #1ebe5d 100%);
+          border: 2px solid #c0c7d1;
+          box-shadow:
+            0 14px 26px rgba(30, 190, 93, 0.26),
+            0 0 0 3px rgba(214, 219, 226, 0.38),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
           text-align: center;
         }
 
         @keyframes offerBlink {
           0%, 100% {
             transform: scale(1);
-            box-shadow: 0 18px 34px rgba(4, 82, 75, 0.34);
+            box-shadow:
+              0 20px 36px rgba(4, 82, 75, 0.28),
+              0 0 0 5px rgba(255, 255, 255, 0.16);
             opacity: 1;
           }
           50% {
             transform: scale(1.08);
-            box-shadow: 0 18px 42px rgba(12, 141, 101, 0.48);
+            box-shadow:
+              0 22px 46px rgba(12, 141, 101, 0.38),
+              0 0 0 7px rgba(255, 244, 214, 0.24);
             opacity: 0.92;
           }
         }

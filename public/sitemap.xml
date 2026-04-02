@@ -7,8 +7,23 @@
   </url>
 
   <url>
+    <loc>https://seedloreedu.com/current-offers</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://seedloreedu.com/robotics-2026-summer-pack</loc>
     <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://seedloreedu.com/robotics-free-workshop</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://seedloreedu.com/robotics-free-workshop-register</loc>
+    <priority>0.8</priority>
   </url>
 
   <url>

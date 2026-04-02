@@ -3,7 +3,7 @@ import React from 'react'
 export default function WhyChoose() {
   return (
     <section id="why-choose-section" className="features">
-      <h2 className="section-title">Why Choose Seedlore EDU?</h2>
+      <h2 className="section-title home-section-heading">Why Choose Seedlore EDU?</h2>
 
       {/* ORIGINAL 3 CARDS (unchanged) */}
       <div className="features-grid">
@@ -120,6 +120,30 @@ alt="Close-up of robotics kit and microcontroller setup for hands-on STEM learni
           and a capstone so students see measurable growth.
         </p>
       </div>
+
+      <style jsx>{`
+        .home-section-heading {
+          display: inline-block;
+          position: relative;
+          color: #0f172a;
+          font-size: var(--font-size-xl);
+          font-family: var(--font-family-heading);
+          font-weight: var(--font-weight-heading);
+          line-height: var(--line-height-heading);
+          letter-spacing: var(--letter-spacing-heading);
+        }
+
+        .home-section-heading::after {
+          left: 0;
+          width: 40px;
+          bottom: -6px;
+          height: 3px;
+          content: '';
+          position: absolute;
+          background: linear-gradient(90deg, #0f766e, #f97316);
+          border-radius: 999px;
+        }
+      `}</style>
     </section>
   )
 }

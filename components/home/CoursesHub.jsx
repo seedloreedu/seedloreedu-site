@@ -56,7 +56,77 @@ export default function CoursesHub() {
         image: '/images/cube-sat.jpg',
         description: 'Prototype a cube satellite concept and learn aerospace system basics.',
       },
-    
+    }),
+    []
+  )
+
+  const roboticsFoundations = useMemo(
+    () => ({
+      'Concepts and Theories': [
+        {
+          title: 'Basics of Robots and Robotics',
+          image: '/images/BASICS OF ROBOT AND ROBOTICS.png',
+          description:
+            'Understand robot anatomy, movement, and joint structures to design machines that collaborate with humans.',
+        },
+        {
+          title: 'Microcontrollers',
+          image: '/images/MICRO CONTROLLER.png',
+          description:
+            'Understand microcontroller architecture and memory to bridge the gap between software logic and physical hardware.',
+        },
+        {
+          title: 'STEM',
+          image: '/images/STEM.png',
+          description:
+            'Master fundamental physics, math, and electronics to understand the energy and logic powering modern technology.',
+        },
+        {
+          title: 'Sensors in Robotics',
+          image: '/images/SENSORS IN ROBOTICS.png',
+          description:
+            "Understand how robots use electronic signals to 'feel' and measure the physical world around them.",
+        },
+        {
+          title: 'Actuators',
+          image: '/images/ACTUATORS.png',
+          description:
+            "Understand how robots use electronic signals to 'feel' and measure the physical world around them.",
+        },
+        {
+          title: 'Resistors',
+          image: '/images/RESISTORS.png',
+          description:
+            'Understand how resistors control electricity and protect sensitive components by limiting the flow of current.',
+        },
+      ],
+      'Programming and Simulation': [
+        {
+          title: 'Arduino',
+          image: '/images/Arduino.jpg',
+          description: 'Learn how to program microcontroller boards for real-world interactive projects.',
+        },
+        {
+          title: 'CPP',
+          image: '/images/cpp.jpg',
+          description: 'Build strong programming logic with C++ for robotics and embedded systems.',
+        },
+        {
+          title: 'WowKi',
+          image: '/images/wowki.jpg',
+          description: 'Simulate circuits and code online to test ideas before building hardware.',
+        },
+        {
+          title: 'Tinkercad',
+          image: '/images/Tinkercad.jpg',
+          description: 'Design and simulate electronics projects in an easy visual learning environment.',
+        },
+        {
+          title: 'Scratch',
+          image: '/images/Scratch.jpg',
+          description: 'Start coding with block-based logic to create interactive stories, games, and ideas.',
+        },
+      ],
     }),
     []
   )
@@ -67,8 +137,10 @@ export default function CoursesHub() {
         key: 'robotics',
         label: 'Robotics',
         rows: [
+          { title: 'Concepts and Theories', items: ['Concepts and Theories'] },
+          { title: 'Programming and Simulation', items: ['Programming and Simulation'] },
           {
-            title: 'Robotics/IoT',
+            title: 'Robotics/IoT Experiments',
             items: [
               'Gesture Motions Rover',
               'Smart Obstacle Avoider',
@@ -83,27 +155,23 @@ export default function CoursesHub() {
             ],
           },
           {
-            title: 'Space Tech',
-            items: [
-              'Satellite IoT Tracker',
-              'CanSat',
-              'CubeSat',
-              
-            ],
+            title: 'SpaceTech',
+            items: ['Satellite IoT Tracker', 'CanSat', 'CubeSat'],
           },
         ],
       },
       {
         key: 'coding',
-        label: 'Coding & Simulators',
+        label: 'Coding and Computers',
         rows: [
+          { title: 'Coding', items: ['C', 'C++', 'Java', 'Python'] },
           {
-            title: 'Coding',
-            items: ['Arduino','C', 'C++', 'Python', 'Java'],
-          },
-          {
-            title: 'Simulation',
-            items: ['Tinkercad', 'Wokwi'],
+            title: 'Computers',
+            items: [
+              'Computer Application',
+              'ICSE - Course as per curriculum from Class V to XII',
+              'CBSE - Course as per curriculum from Class V to XII',
+            ],
           },
         ],
       },
@@ -113,7 +181,11 @@ export default function CoursesHub() {
         note: 'ICSE / CBSE / ISC curriculum and beyond',
         rows: [
           {
-            title: 'AI/ML Curriculum',
+            title: 'ICSE and CBSE AI Courses',
+            items: ['ICSE - AI course as per curriculum', 'CBSE - AI course as per curriculum'],
+          },
+          {
+            title: 'Other',
             items: [
               'Introduction to Artificial Intelligence',
               'Human vs Machine Intelligence',
@@ -139,7 +211,7 @@ export default function CoursesHub() {
               'Recommendation Systems',
               'Mathematical Foundations',
               'Linear Regression',
-              "Bayes’ Theorem in AI",
+              'Bayes Theorem in AI',
               'Neural Networks (Intro)',
               'Transformers & Attention (NEW)',
               'Natural Language Processing',
@@ -151,26 +223,27 @@ export default function CoursesHub() {
           },
         ],
       },
-      {
-        key: 'computer',
-        label: 'Computer',
-        rows: [
-          {
-            title: 'School Curriculum',
-            items: [
-              'ICSE – as per curriculum',
-              'CBSE – as per curriculum',
-              'ISC – as per curriculum',
-            ],
-          },
-        ],
-      },
     ],
+    []
+  )
+
+  const defaultExpandedGroups = useMemo(
+    () => ({
+      'robotics-0': true,
+      'robotics-1': false,
+      'robotics-2': true,
+      'robotics-3': false,
+      'coding-0': true,
+      'coding-1': true,
+      'aiml-0': true,
+      'aiml-1': true,
+    }),
     []
   )
 
   const [activeCourseTab, setActiveCourseTab] = useState(courseTabs[0]?.key || 'robotics')
   const [expandedExperiment, setExpandedExperiment] = useState(null)
+  const [expandedCourseGroups, setExpandedCourseGroups] = useState(defaultExpandedGroups)
   const activeTab = courseTabs.find((t) => t.key === activeCourseTab) || courseTabs[0]
 
   useEffect(() => {
@@ -178,7 +251,6 @@ export default function CoursesHub() {
       '#courses-robotics': 'robotics',
       '#courses-coding': 'coding',
       '#courses-aiml': 'aiml',
-      '#courses-computer': 'computer',
     }
 
     const syncTabWithHash = () => {
@@ -192,39 +264,38 @@ export default function CoursesHub() {
     syncTabWithHash()
     window.addEventListener('hashchange', syncTabWithHash)
 
-    return () => {
-      window.removeEventListener('hashchange', syncTabWithHash)
-    }
+    return () => window.removeEventListener('hashchange', syncTabWithHash)
   }, [])
+
+  const toggleGroup = (key) => {
+    setExpandedCourseGroups((current) => ({
+      ...current,
+      [key]: !current[key],
+    }))
+  }
 
   return (
     <section id="courses-hub" className="courses-hub">
       <div className="courses-hub-container">
-        {/* HERO TITLE */}
         <h1 className="home-hero-title hero-title">Empowering Kids with Robotics, AI &amp; Coding</h1>
 
         <p className="home-hero-subtitle hero-subtitle">
-          Seedlore Educare nurtures young minds by transforming curiosity into capability—guiding learners from potential
-          to mastery through structured, future-ready education aligned with NEP and ICSE, CBSE &amp; ISC curricula.
-          Explore our courses or connect with us to begin the journey.
+          Seedlore Educare nurtures young minds by transforming curiosity into capability, guiding learners
+          from potential to mastery through structured, future-ready education aligned with NEP and ICSE,
+          CBSE &amp; ISC curricula.
         </p>
 
-        {/* ✅ VIDEO ON TOP (desktop + mobile) */}
         <div className="hero-media">
           <div className="media-card">
             <video autoPlay loop muted playsInline preload="auto" src="/videos/hero-robotics.mp4" />
-
-            {/* ✅ Professional badges (your exact style) */}
-           <div className="hero-overlay">
-            <div role="img" aria-label="Hands-on learning" className="hero-pill hero-pill-secondary">
-              Hands-on Robotics/AI Classes
+            <div className="hero-overlay">
+              <div role="img" aria-label="Hands-on learning" className="hero-pill hero-pill-secondary">
+                Hands-on Robotics/AI Classes
+              </div>
             </div>
-            </div>
-
           </div>
         </div>
 
-        {/* ✅ COURSES TABLE (priority) */}
         <div className="delivery-highlight" aria-label="Course delivery modes">
           <div className="delivery-highlight__header">
             <div className="delivery-highlight__titleRow">
@@ -236,7 +307,9 @@ export default function CoursesHub() {
               </Link>
             </div>
             <div className="delivery-highlight__text">
-              Both Robotics and Coding/AI courses are taught <b>Online</b> and <b>Offline</b>, and <b>Robotics kits are provided for online learners</b> so practical building can continue from home.
+              Both Robotics and Coding/AI courses are taught <b>Online</b> and <b>Offline</b>, and
+              <b> Robotics kits are provided for online learners</b> so practical building can continue from
+              home.
             </div>
           </div>
 
@@ -258,16 +331,13 @@ export default function CoursesHub() {
           <span id="courses-robotics" className="courses-anchor" />
           <span id="courses-coding" className="courses-anchor" />
           <span id="courses-aiml" className="courses-anchor" />
-          <span id="courses-computer" className="courses-anchor" />
         </div>
 
         <div className="courses-section">
-          {/* Caption */}
           <div className="courses-captionRow">
             <div className="courses-caption">Courses</div>
           </div>
 
-          {/* Tabs */}
           <div role="tablist" className="tabs-row">
             {courseTabs.map((tab) => (
               <div key={tab.key} className="tab-wrap">
@@ -278,6 +348,7 @@ export default function CoursesHub() {
                   onClick={() => {
                     setActiveCourseTab(tab.key)
                     setExpandedExperiment(null)
+                    setExpandedCourseGroups(defaultExpandedGroups)
                   }}
                   type="button"
                 >
@@ -287,121 +358,202 @@ export default function CoursesHub() {
             ))}
           </div>
 
-          {/* Table Card */}
           <div className="featured-card courses-card">
             <div className="courses-tableHeader">
               {activeTab.note ? <div className="courses-note">{activeTab.note}</div> : null}
-             
             </div>
 
             <div className="courses-scroll">
-              {activeTab.rows.map((group, gi) => (
-                <div key={`${activeTab.key}-group-${gi}`} className="course-group">
-                  <div className="course-group-title">{group.title}</div>
-                  {activeTab.key === 'robotics' ? (
-                    <div className="experiment-grid">
-                      {group.items.map((item, ii) => {
-                        const experiment = roboticsExperiments[item] || {
-                          image: '/images/Handson-hero.jpg',
-                          description: 'Hands-on project with guided mentor support and real builds.',
-                        }
-                        const cardKey = `${activeTab.key}-${gi}-${ii}`
-                        const isExpanded = expandedExperiment === cardKey
-                        return (
-                          <article
-                            key={`${activeTab.key}-item-${gi}-${ii}`}
-                            className={`experiment-card ${isExpanded ? 'is-expanded' : ''}`}
-                            aria-label={`${item}: ${experiment.description}`}
-                          >
-                            <div className="experiment-imageWrap">
-                              <img
-                                src={experiment.image}
-                                alt={`${item} experiment`}
-                                loading="lazy"
-                                className="experiment-image"
-                              />
-                            </div>
-                            <div className="experiment-detailsPanel">
-                              <div className="experiment-infoBar">
-                                <h4 className="experiment-title">{item}</h4>
-                                <button
-                                  type="button"
-                                  className={`experiment-expandButton ${isExpanded ? 'is-expanded' : ''}`}
-                                  aria-expanded={isExpanded ? 'true' : 'false'}
-                                  aria-label={isExpanded ? `Hide details for ${item}` : `Show details for ${item}`}
-                                  onClick={(event) => {
-                                    event.stopPropagation()
-                                    setExpandedExperiment(isExpanded ? null : cardKey)
-                                  }}
-                                >
-                                  <span className="experiment-expandIcon" aria-hidden="true">
-                                    {isExpanded ? '−' : '+'}
-                                  </span>
-                                </button>
+              {activeTab.rows.map((group, gi) => {
+                const groupKey = `${activeTab.key}-${gi}`
+                const usesExpandableGroups =
+                  activeTab.key === 'robotics' || activeTab.key === 'coding' || activeTab.key === 'aiml'
+                const isOpen = expandedCourseGroups[groupKey]
+                const isFoundationGroup =
+                  group.title === 'Concepts and Theories' || group.title === 'Programming and Simulation'
+                const foundationItems = roboticsFoundations[group.title]
+
+                return (
+                  <div key={groupKey} className="course-group">
+                    {usesExpandableGroups ? (
+                      <>
+                        <button
+                          type="button"
+                          className={`course-group-toggle ${isOpen ? 'is-open' : ''}`}
+                          aria-expanded={isOpen ? 'true' : 'false'}
+                          onClick={() => toggleGroup(groupKey)}
+                        >
+                          <span className="course-group-title">{group.title}</span>
+                          <span className="course-group-chevron" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                              <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m6 9l6 6l6-6"></path>
+                            </svg>
+                          </span>
+                        </button>
+
+                        {isOpen ? (
+                          activeTab.key === 'robotics' && isFoundationGroup ? (
+                            Array.isArray(foundationItems) ? (
+                              <div className="experiment-grid">
+                                {foundationItems.map((item, ii) => {
+                                  const cardKey = `${groupKey}-${ii}`
+                                  const isExpanded = expandedExperiment === cardKey
+
+                                  return (
+                                    <article
+                                      key={cardKey}
+                                      className={`experiment-card ${isExpanded ? 'is-expanded' : ''}`}
+                                      aria-label={`${item.title}: ${item.description}`}
+                                    >
+                                      <div className="experiment-imageWrap">
+                                        <img
+                                          src={item.image}
+                                          alt={item.title}
+                                          loading="lazy"
+                                          className="experiment-image"
+                                        />
+                                      </div>
+                                      <div className="experiment-detailsPanel">
+                                        <div className="experiment-infoBar">
+                                          <h4 className="experiment-title">{item.title}</h4>
+                                          <button
+                                            type="button"
+                                            className={`experiment-expandButton ${isExpanded ? 'is-expanded' : ''}`}
+                                            aria-expanded={isExpanded ? 'true' : 'false'}
+                                            aria-label={isExpanded ? `Hide details for ${item.title}` : `Show details for ${item.title}`}
+                                            onClick={(event) => {
+                                              event.stopPropagation()
+                                              setExpandedExperiment(isExpanded ? null : cardKey)
+                                            }}
+                                          >
+                                            <span className="experiment-expandIcon" aria-hidden="true">
+                                              {isExpanded ? '-' : '+'}
+                                            </span>
+                                          </button>
+                                        </div>
+                                        <p className="experiment-description">{item.description}</p>
+                                      </div>
+                                    </article>
+                                  )
+                                })}
                               </div>
-                              <p className="experiment-description">{experiment.description}</p>
+                            ) : (
+                              <div className="foundation-placeholder">
+                                <p>{foundationItems}</p>
+                              </div>
+                            )
+                          ) : activeTab.key === 'robotics' ? (
+                            <div className="experiment-grid">
+                              {group.items.map((item, ii) => {
+                                const experiment = roboticsExperiments[item] || {
+                                  image: '/images/Handson-hero.jpg',
+                                  description: 'Hands-on project with guided mentor support and real builds.',
+                                }
+                                const cardKey = `${groupKey}-${ii}`
+                                const isExpanded = expandedExperiment === cardKey
+
+                                return (
+                                  <article
+                                    key={cardKey}
+                                    className={`experiment-card ${isExpanded ? 'is-expanded' : ''}`}
+                                    aria-label={`${item}: ${experiment.description}`}
+                                  >
+                                    <div className="experiment-imageWrap">
+                                      <img
+                                        src={experiment.image}
+                                        alt={`${item} experiment`}
+                                        loading="lazy"
+                                        className="experiment-image"
+                                      />
+                                    </div>
+                                    <div className="experiment-detailsPanel">
+                                      <div className="experiment-infoBar">
+                                        <h4 className="experiment-title">{item}</h4>
+                                        <button
+                                          type="button"
+                                          className={`experiment-expandButton ${isExpanded ? 'is-expanded' : ''}`}
+                                          aria-expanded={isExpanded ? 'true' : 'false'}
+                                          aria-label={isExpanded ? `Hide details for ${item}` : `Show details for ${item}`}
+                                          onClick={(event) => {
+                                            event.stopPropagation()
+                                            setExpandedExperiment(isExpanded ? null : cardKey)
+                                          }}
+                                        >
+                                          <span className="experiment-expandIcon" aria-hidden="true">
+                                            {isExpanded ? '-' : '+'}
+                                          </span>
+                                        </button>
+                                      </div>
+                                      <p className="experiment-description">{experiment.description}</p>
+                                    </div>
+                                  </article>
+                                )
+                              })}
                             </div>
-                          </article>
-                        )
-                      })}
-                    </div>
-                  ) : (
-                    <ul className="course-bullets">
-                      {group.items.map((item, ii) => (
-                        <li key={`${activeTab.key}-item-${gi}-${ii}`}>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
+                          ) : (
+                            <ul className="course-bullets course-bullets--panel">
+                              {group.items.map((item, ii) => (
+                                <li key={`${groupKey}-${ii}`}>
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )
+                        ) : null}
+                      </>
+                    ) : (
+                      <>
+                        <div className="course-group-title course-group-title--static">{group.title}</div>
+                        <ul className="course-bullets">
+                          {group.items.map((item, ii) => (
+                            <li key={`${groupKey}-${ii}`}>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                  </div>
+                )
+              })}
             </div>
           </div>
 
-          {/* ✅ Contact Us below table (important) */}
-          {/* ✅ Branch label + marquee */}
           <div className="branch-block" aria-label="Seedlore branches">
             <div className="branch-title">Branches</div>
             <div className="branch-marquee branch-marquee--under-table">
               <div className="branch-marquee__track">
-                <span className="branch-chip">📍 Hindmotor – Near Zudio</span>
-                <span className="branch-chip">📍 Dunlop – Near Rathtala</span>
-                <span className="branch-chip">📍 Hindmotor – Near Zudio</span>
-                <span className="branch-chip">📍 Dunlop – Near Rathtala</span>
+                <span className="branch-chip">Hindmotor - Near Zudio</span>
+                <span className="branch-chip">Dunlop - Near Rathtala</span>
+                <span className="branch-chip">Hindmotor - Near Zudio</span>
+                <span className="branch-chip">Dunlop - Near Rathtala</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ✅ Drop-in CSS (responsive + professional) */}
       <style jsx>{`
-        .courses-hub {
-          scroll-margin-top: 132px;
-        }
-
+        .courses-hub,
         .courses-section {
           scroll-margin-top: 132px;
         }
 
-        /* ---------- VIDEO ---------- */
         .hero-media {
           margin-top: 24px;
           margin-bottom: 28px;
         }
 
         .media-card {
-  position: relative;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  aspect-ratio: 16 / 9;
-  max-height: 620px; /* 🔥 limit height on desktop */
-  border-radius: 18px;
-  overflow: hidden;
-}
-
+          position: relative;
+          width: 100%;
+          max-width: 1100px;
+          margin: 0 auto;
+          aspect-ratio: 16 / 9;
+          max-height: 620px;
+          border-radius: 18px;
+          overflow: hidden;
+        }
 
         .media-card video {
           width: 100%;
@@ -410,49 +562,40 @@ export default function CoursesHub() {
           display: block;
         }
 
-        /* Badges (same style you requested) */
-       /* ---------- Overlay container ---------- */
-.hero-overlay {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 3;
-}
-
-/* ---------- Clean modern pills ---------- */
-.hero-pill {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.2px;
-  color: #111;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-  white-space: nowrap;
-}
-
-/* Secondary slightly tinted */
-.hero-pill-secondary {
-  background: rgba(15, 118, 110, 0.9);
-  color: #fff;
-}
-
-
-        /* ---------- COURSES ---------- */
-        .courses-section {
-          max-width: 1100px;
-          margin: 0 auto;
+        .hero-overlay {
+          position: absolute;
+          top: 18px;
+          left: 18px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          z-index: 3;
         }
 
-        .courses-anchorWrap {
-          position: relative;
+        .hero-pill {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(8px);
+          padding: 8px 16px;
+          border-radius: 999px;
+          font-weight: 800;
+          font-size: 13px;
+          letter-spacing: 0.2px;
+          color: #111;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+          white-space: nowrap;
+        }
+
+        .hero-pill-secondary {
+          background: rgba(15, 118, 110, 0.9);
+          color: #fff;
+        }
+
+        .courses-section,
+        .courses-anchorWrap,
+        .delivery-highlight {
           max-width: 1100px;
-          margin: 0 auto;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .courses-anchor {
@@ -463,8 +606,7 @@ export default function CoursesHub() {
         }
 
         .delivery-highlight {
-          max-width: 1100px;
-          margin: 0 auto 18px;
+          margin-bottom: 18px;
           padding: 16px;
           border-radius: 20px;
           background:
@@ -481,15 +623,23 @@ export default function CoursesHub() {
           margin-bottom: 12px;
         }
 
-        .delivery-highlight__titleRow {
+        .delivery-highlight__titleRow,
+        .courses-captionRow,
+        .tabs-row {
           display: flex;
           align-items: center;
-          justify-content: space-between;
           gap: 12px;
           flex-wrap: wrap;
         }
 
-        .delivery-highlight__title {
+        .delivery-highlight__titleRow,
+        .courses-captionRow {
+          justify-content: space-between;
+        }
+
+        .delivery-highlight__title,
+        .courses-caption,
+        .branch-title {
           display: inline-block;
           position: relative;
           font-size: var(--font-size-xl);
@@ -507,7 +657,7 @@ export default function CoursesHub() {
           width: 40px;
           bottom: -6px;
           height: 3px;
-          content: "";
+          content: '';
           position: absolute;
           background: linear-gradient(90deg, #0f766e, #f97316);
           border-radius: 999px;
@@ -520,14 +670,16 @@ export default function CoursesHub() {
           max-width: 850px;
         }
 
-        .delivery-marquee {
+        .delivery-marquee,
+        .branch-marquee {
           overflow: hidden;
           border-radius: 14px;
           border: 1px solid rgba(15, 118, 110, 0.1);
           background: rgba(255, 255, 255, 0.7);
         }
 
-        .delivery-marquee__track {
+        .delivery-marquee__track,
+        .branch-marquee__track {
           display: inline-flex;
           gap: 10px;
           padding: 12px;
@@ -536,7 +688,12 @@ export default function CoursesHub() {
           animation: deliveryScroll 18s linear infinite;
         }
 
-        .delivery-chip {
+        .branch-marquee__track {
+          animation: branchScroll 16s linear infinite;
+        }
+
+        .delivery-chip,
+        .branch-chip {
           display: inline-flex;
           align-items: center;
           padding: 8px 14px;
@@ -545,6 +702,11 @@ export default function CoursesHub() {
           font-weight: 800;
           color: #0f172a;
           box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+        }
+
+        .branch-chip {
+          background: rgba(0, 0, 0, 0.04);
+          font-weight: 600;
         }
 
         .delivery-chip--gold {
@@ -561,48 +723,6 @@ export default function CoursesHub() {
 
         .delivery-chip--violet {
           background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
-        }
-
-        @keyframes deliveryScroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
-        .courses-caption {
-          display: inline-block;
-          position: relative;
-          font-size: var(--font-size-xl);
-          font-family: var(--font-family-heading);
-          font-weight: var(--font-weight-heading);
-          line-height: var(--line-height-heading);
-          letter-spacing: var(--letter-spacing-heading);
-        }
-
-        .courses-captionRow {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 12px;
-          margin: 0 0 12px;
-          flex-wrap: wrap;
-        }
-
-        .tabs-row {
-          display: flex;
-          gap: 10px;
-          flex-wrap: wrap;
-          align-items: center;
-          margin-bottom: 14px;
-        }
-
-        .tab-wrap {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
         }
 
         .tab-button {
@@ -631,10 +751,70 @@ export default function CoursesHub() {
           padding-right: 6px;
         }
 
-        .course-group-title {
-          font-weight: 900;
+        .course-group + .course-group {
           margin-top: 14px;
-          margin-bottom: 6px;
+        }
+
+        .course-group-toggle {
+          width: 100%;
+          padding: 12px 14px;
+          border: 1px solid rgba(15, 118, 110, 0.12);
+          border-radius: 14px;
+          background: linear-gradient(135deg, rgba(240, 252, 250, 0.96), rgba(255, 249, 240, 0.96));
+          color: #12312d;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          cursor: pointer;
+          text-align: left;
+          box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+        }
+
+        .course-group-title {
+          margin: 0;
+          font-weight: 900;
+          position: relative;
+          display: inline-block;
+          padding-bottom: 8px;
+        }
+
+        .course-group-title::after {
+          left: 0;
+          width: 40px;
+          bottom: 0;
+          height: 3px;
+          content: '';
+          position: absolute;
+          background: linear-gradient(90deg, #0f766e, #f97316);
+          border-radius: 999px;
+        }
+
+        .course-group-title--static {
+          margin-bottom: 8px;
+        }
+
+        .course-group-chevron {
+          display: inline-flex;
+          transition: transform 0.2s ease;
+        }
+
+        .course-group-toggle.is-open .course-group-chevron {
+          transform: rotate(180deg);
+        }
+
+        .foundation-placeholder {
+          margin-top: 10px;
+          padding: 16px 18px;
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.82);
+          border: 1px dashed rgba(15, 118, 110, 0.24);
+          color: #325650;
+        }
+
+        .foundation-placeholder p {
+          margin: 0;
+          line-height: 1.55;
         }
 
         .course-bullets {
@@ -642,11 +822,23 @@ export default function CoursesHub() {
           padding-left: 18px;
         }
 
+        .course-bullets--panel {
+          margin-top: 10px;
+          padding: 14px 18px 14px 30px;
+          border-radius: 14px;
+          background: rgba(255, 255, 255, 0.82);
+          border: 1px solid rgba(15, 118, 110, 0.12);
+        }
+
+        .course-bullets--panel li + li {
+          margin-top: 8px;
+        }
+
         .experiment-grid {
           display: grid;
           gap: 12px;
-          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-          margin-top: 6px;
+          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+          margin-top: 10px;
         }
 
         .experiment-card {
@@ -654,7 +846,7 @@ export default function CoursesHub() {
           border-radius: 14px;
           border: 1px solid rgba(15, 118, 110, 0.2);
           background: #fff;
-          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
         }
 
         .experiment-imageWrap {
@@ -721,18 +913,9 @@ export default function CoursesHub() {
         }
 
         .experiment-expandIcon {
-          font-size: 0;
-          line-height: 1;
-        }
-
-        .experiment-expandIcon::before {
-          content: '+';
           font-size: 20px;
+          line-height: 1;
           font-weight: 700;
-        }
-
-        .experiment-expandButton.is-expanded .experiment-expandIcon::before {
-          content: '-';
         }
 
         .experiment-description {
@@ -757,12 +940,12 @@ export default function CoursesHub() {
           transform: translateY(0);
         }
 
+
         .experiment-card.is-expanded {
           outline: 2px solid rgba(15, 118, 110, 0.9);
           outline-offset: 2px;
         }
 
-        /* ---------- CONTACT BADGE (professional + mild automation) ---------- */
         .badge-contact {
           position: relative;
           background: #0f766e;
@@ -780,12 +963,37 @@ export default function CoursesHub() {
         }
 
         .badge-contact-inline {
-          position: static; /* inline near tab */
+          position: static;
           padding: 8px 14px;
           font-size: 13px;
         }
 
-        /* soft pulse glow */
+        .branch-block {
+          margin-top: 14px;
+        }
+
+        .branch-title {
+          margin: 0 0 14px;
+        }
+
+        @keyframes deliveryScroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        @keyframes branchScroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
         @keyframes pulseGlow {
           0% {
             box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.35);
@@ -798,32 +1006,7 @@ export default function CoursesHub() {
           }
         }
 
-        /* ---------- BRANCHES ---------- */
-        .branch-block {
-          margin-top: 14px;
-        }
-
-        .branch-title {
-          display: inline-block;
-          position: relative;
-          font-size: var(--font-size-xl);
-          font-family: var(--font-family-heading);
-          font-weight: var(--font-weight-heading);
-          line-height: var(--line-height-heading);
-          letter-spacing: var(--letter-spacing-heading);
-          color: #0f172a;
-          opacity: 1;
-          margin: 0 0 14px;
-        }
-
-        /* ---------- MOBILE ---------- */
         @media (max-width: 768px) {
-         
-
-          .courses-captionRow {
-            align-items: flex-start;
-          }
-
           .delivery-highlight {
             padding: 14px;
             margin-bottom: 16px;
@@ -837,7 +1020,8 @@ export default function CoursesHub() {
             animation-duration: 13s;
           }
 
-          .delivery-chip {
+          .delivery-chip,
+          .branch-chip {
             font-size: 12px;
             padding: 8px 12px;
           }
@@ -848,7 +1032,7 @@ export default function CoursesHub() {
 
           .experiment-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px;
+            gap: 8px;
           }
 
           .experiment-detailsPanel {
@@ -874,14 +1058,16 @@ export default function CoursesHub() {
             padding: 7px 12px;
             font-size: 12px;
           }
+        }
 
-          .badge-contact-large {
-            padding: 9px 14px;
-            font-size: 13px;
+        @media (max-width: 520px) {
+          .courses-scroll {
+            max-height: 56vh;
           }
 
-          .contact-bottom {
-            justify-content: center; /* nicer on mobile */
+          .experiment-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
           }
         }
       `}</style>

@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Script from 'dangerous-html/react'
 
 export default function FaqSection() {
+  const [isFaqOpen, setIsFaqOpen] = useState(false)
+
   return (
     <>
       <section id="faq-section" aria-labelledby="faq-heading" className="faq-section">
         <div className="faq-container">
           <div className="faq-header">
-            <h2 id="faq-heading" className="section-title">
+            <h2 id="faq-heading" className="section-title home-section-heading">
               Frequently Asked Questions
             </h2>
+            <button
+              type="button"
+              className={`faq-toggle ${isFaqOpen ? 'is-open' : ''}`}
+              aria-expanded={isFaqOpen ? 'true' : 'false'}
+              onClick={() => setIsFaqOpen((current) => !current)}
+            >
+              <span>{isFaqOpen ? 'Hide FAQ' : 'Show FAQ'}</span>
+              <span className="faq-toggle__icon" aria-hidden="true">
+                {isFaqOpen ? '-' : '+'}
+              </span>
+            </button>
+          </div>
 
+          <div className={`faq-collapsible ${isFaqOpen ? 'is-open' : ''}`} hidden={!isFaqOpen}>
             <div className="search-box">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                 <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
@@ -25,7 +40,6 @@ export default function FaqSection() {
                 aria-label="Search frequently asked questions"
               />
             </div>
-          </div>
 
           <div role="tablist" className="tabs-row">
             <button
@@ -295,6 +309,7 @@ export default function FaqSection() {
 
             </aside>
           </div>
+          </div>
         </div>
       </section>
 
@@ -457,6 +472,65 @@ export default function FaqSection() {
 
       {/* Minimal FAQ-only CSS (cleaned) */}
       <style jsx>{`
+        .home-section-heading {
+          display: inline-block;
+          position: relative;
+          color: #0f172a;
+          font-size: var(--font-size-xl);
+          font-family: var(--font-family-heading);
+          font-weight: var(--font-weight-heading);
+          line-height: var(--line-height-heading);
+          letter-spacing: var(--letter-spacing-heading);
+        }
+
+        .home-section-heading::after {
+          left: 0;
+          width: 40px;
+          bottom: -6px;
+          height: 3px;
+          content: '';
+          position: absolute;
+          background: linear-gradient(90deg, #0f766e, #f97316);
+          border-radius: 999px;
+        }
+
+        .faq-header {
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .faq-toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 10px 16px;
+          border-radius: 999px;
+          border: 1px solid rgba(15, 118, 110, 0.18);
+          background: linear-gradient(135deg, rgba(240, 252, 250, 0.96), rgba(255, 249, 240, 0.96));
+          color: #0f766e;
+          font-weight: 800;
+          cursor: pointer;
+          box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+        }
+
+        .faq-toggle__icon {
+          width: 24px;
+          height: 24px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 8px;
+          background: #e6f4f1;
+          font-size: 18px;
+          line-height: 1;
+        }
+
+        .faq-collapsible {
+          margin-top: 12px;
+        }
+
         :global(#faq-section .faq-answer) {
           text-align: left;
           white-space: normal;
