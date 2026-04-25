@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
@@ -46,47 +46,13 @@ const kitImages = [
   { src: '/images/weather-monitoring.jpg', label: 'Sensor-based project builds' },
 ]
 
-const targetDate = new Date('2026-04-30T23:59:59+05:30')
-
-function getTimeRemaining() {
-  const difference = targetDate.getTime() - Date.now()
-
-  if (difference <= 0) {
-    return { expired: true, days: 0, hours: 0, minutes: 0 }
-  }
-
-  return {
-    expired: false,
-    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / (1000 * 60)) % 60),
-  }
-}
-
 export default function RoboticsSummerPackPage() {
-  const [timeLeft, setTimeLeft] = useState(getTimeRemaining())
-
   useEffect(() => {
     trackEvent('summer_pack_visit', {
       page_title: 'Robotics 2026 Summer Pack',
       page_location: '/robotics-2026-summer-pack',
     })
-
-    const interval = window.setInterval(() => {
-      setTimeLeft(getTimeRemaining())
-    }, 1000)
-
-    return () => window.clearInterval(interval)
   }, [])
-
-  const countdownItems = useMemo(
-    () => [
-      { label: 'Days', value: timeLeft.days },
-      { label: 'Hours', value: timeLeft.hours },
-      { label: 'Minutes', value: timeLeft.minutes },
-    ],
-    [timeLeft]
-  )
 
   const handleRegisterClick = () => {
     trackEvent('summer_pack_register_click', {
@@ -102,12 +68,12 @@ export default function RoboticsSummerPackPage() {
           <title>Robotics 2026 Summer Pack | Seedlore EDU</title>
           <meta
             name="description"
-            content="Robotics 2026 Summer Pack for Class 7 to 10. Six courses, six months, online or offline with robotics kits included."
+            content="Robotics 2026 Summer Pack for Class 6 to 10. Six courses, six months, online or offline with robotics kits included."
           />
           <meta property="og:title" content="Robotics 2026 Summer Pack | Seedlore EDU" />
           <meta
             property="og:description"
-            content="Professional robotics summer program with six modules, live mentoring, hardware kits, and a limited April 2026 registration offer."
+            content="Professional robotics summer program with six modules, live mentoring, hardware kits, and flexible learning support."
           />
         </Head>
 
@@ -116,7 +82,7 @@ export default function RoboticsSummerPackPage() {
         <main className="summer-pack-main">
           <section className="summer-hero">
             <div className="summer-hero__content">
-              <div className="summer-hero__eyebrow">Limited Offer for April 2026 Registrations</div>
+              <div className="summer-hero__eyebrow">Robotics Summer Program 2026</div>
               <h1 className="summer-hero__title">Robotics 2026 Summer Pack for Class 6 to 10</h1>
               <p className="summer-hero__subtitle">
                 A six-month guided robotics journey with 6 practical modules, live mentor support,
@@ -125,14 +91,11 @@ export default function RoboticsSummerPackPage() {
               </p>
 
               <div className="summer-price">
-                <div className="summer-price__label">Offer Price</div>
+                <div className="summer-price__label">Course Price</div>
                 <div className="summer-price__row">
                   <span className="summer-price__old">Rs. 19,999</span>
-                  <span className="summer-price__new">Rs. 13,999</span>
+                  <span className="summer-price__new">Rs. 14,999</span>
                 </div>
-                <p className="summer-price__note">
-                  Valid for registrations completed on or before April 30, 2026.
-                </p>
               </div>
 
               <div className="summer-lms-note">
@@ -151,21 +114,6 @@ export default function RoboticsSummerPackPage() {
                     Students get access to Seedlore's own LMS platform for class materials, guided learning,
                     progress support, and a course completion certificate.
                   </span>
-                </div>
-              </div>
-
-              <div className="summer-countdown">
-                <div className="summer-countdown__header">
-                  <h2>Time Remaining</h2>
-                  <span>{timeLeft.expired ? 'Offer closed' : 'Offer ends April 30, 2026, 11:59 PM IST'}</span>
-                </div>
-                <div className="summer-countdown__grid">
-                  {countdownItems.map((item) => (
-                    <div key={item.label} className="summer-countdown__card">
-                      <strong>{String(item.value).padStart(2, '0')}</strong>
-                      <span>{item.label}</span>
-                    </div>
-                  ))}
                 </div>
               </div>
 
@@ -325,11 +273,11 @@ export default function RoboticsSummerPackPage() {
 
           <section className="summer-cta-panel">
             <div>
-              <p className="summer-section__eyebrow">Reserve the Offer</p>
-              <h2>Secure the Summer Pack before April closes.</h2>
+              <p className="summer-section__eyebrow">Reserve Your Seat</p>
+              <h2>Secure the Summer Pack</h2>
               <p>
-                Seats and discounted registrations are limited. Submit your details and our team will
-                contact you for the next step.
+                Seats are limited. Submit your details and our team will contact you for the next
+                step.
               </p>
             </div>
 
@@ -453,20 +401,6 @@ export default function RoboticsSummerPackPage() {
           line-height: 1;
         }
 
-        .summer-price__note {
-          margin: 10px 0 0;
-          font-size: 0.95rem;
-          color: rgba(8, 16, 24, 0.72);
-        }
-
-        .summer-countdown {
-          margin-top: 24px;
-          padding: 18px 20px;
-          border-radius: 22px;
-          color: #fff;
-          background: linear-gradient(140deg, #07353c, #04524b);
-        }
-
         .summer-lms-note {
           display: grid;
           grid-template-columns: 42px 1fr;
@@ -500,54 +434,6 @@ export default function RoboticsSummerPackPage() {
           font-size: 0.92rem;
           line-height: 1.55;
           color: rgba(8, 16, 24, 0.74);
-        }
-
-        .summer-countdown__header {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          gap: 12px;
-          flex-wrap: wrap;
-        }
-
-        .summer-countdown__header h2 {
-          margin: 0;
-          font-size: 1.1rem;
-        }
-
-        .summer-countdown__header span {
-          font-size: 0.92rem;
-          opacity: 0.82;
-        }
-
-        .summer-countdown__grid {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 12px;
-          margin-top: 16px;
-        }
-
-        .summer-countdown__card {
-          padding: 14px 10px;
-          border-radius: 18px;
-          text-align: center;
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .summer-countdown__card strong {
-          display: block;
-          font-size: clamp(1.45rem, 3vw, 2.2rem);
-          line-height: 1;
-        }
-
-        .summer-countdown__card span {
-          display: block;
-          margin-top: 6px;
-          font-size: 0.8rem;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          opacity: 0.74;
         }
 
         .summer-hero__actions {
@@ -823,7 +709,6 @@ export default function RoboticsSummerPackPage() {
             padding: 20px;
           }
 
-          .summer-countdown__grid,
           .summer-hero__visual-grid,
           .summer-info,
           .summer-course-grid,
@@ -838,7 +723,6 @@ export default function RoboticsSummerPackPage() {
         }
 
         @media (max-width: 520px) {
-          .summer-countdown__grid,
           .summer-hero__visual-grid,
           .summer-info,
           .summer-course-grid,

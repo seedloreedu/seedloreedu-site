@@ -169,6 +169,7 @@ export default function CoursesHub() {
             title: 'Computers',
             items: [
               'Computer Application',
+              'Computer AI & Robotics',
               'ICSE - Course as per curriculum from Class V to XII',
               'CBSE - Course as per curriculum from Class V to XII',
             ],

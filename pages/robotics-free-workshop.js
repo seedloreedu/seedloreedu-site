@@ -33,7 +33,7 @@ export default function RoboticsFreeWorkshopPage() {
           <title>Robotics Free Workshop | Seedlore EDU</title>
           <meta
             name="description"
-            content="Join Seedlore EDU's offline robotics free workshop on April 26 from 11:00 AM to 2:00 PM at Hindmotor, Hooghly. Limited seats available."
+            content="Join Seedlore EDU's offline robotics free workshop on 31st May from 11:00 AM to 2:00 PM at Hindmotor, Hooghly. Limited seats available."
           />
           <meta property="og:title" content="Robotics Free Workshop | Seedlore EDU" />
           <meta
@@ -57,7 +57,7 @@ export default function RoboticsFreeWorkshopPage() {
               <div className="workshop-details">
                 <div className="workshop-detail-card">
                   <span>Date and Time</span>
-                  <strong>April 26, 11:00 AM to 2:00 PM</strong>
+                  <strong>31st May, 11:00 AM to 2:00 PM</strong>
                 </div>
                 <div className="workshop-detail-card">
                   <span>Location</span>
